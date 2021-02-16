@@ -1,0 +1,104 @@
+<!-- 
+                <div class="todo">
+                    <div class="content">
+                        <input type="checkbox" data-name="task-check">
+                        <p>Carotteeeeeeeee</p>
+                        <span class="icon-trash"><i class="fas fa-trash"></i></span>
+                    </div>
+                    <div class="input">
+                        <div class="price">
+                            <input type="number" data-name="price">
+                            <i class="fas fa-euro-sign"></i>
+                        </div>
+                        <div class="quantity">
+                            <input type="number" data-name="quantity">
+                            <span>Qté</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="todo">
+                    <div class="content">
+                        <input type="checkbox" data-name="task-check">
+                        <p>Carotteeeeeeeee</p>
+                        <span class="icon-trash"><i class="fas fa-trash"></i></span>
+                    </div>
+                    <div class="input">
+                        <div class="price">
+                            <input type="number" data-name="price">
+                            <i class="fas fa-euro-sign"></i>
+                        </div>
+                        <div class="quantity">
+                            <input type="number" data-name="quantity">
+                            <span>Qté</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="todo">
+                    <div class="content">
+                        <input type="checkbox" data-name="task-check">
+                        <p>Carotteeeeeeeee</p>
+                        <span class="icon-trash"><i class="fas fa-trash"></i></span>
+                    </div>
+                    <div class="input">
+                        <div class="price">
+                            <input type="number" data-name="price">
+                            <i class="fas fa-euro-sign"></i>
+                        </div>
+                        <div class="quantity">
+                            <input type="number" data-name="quantity">
+                            <span>Qté</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="todo">
+                    <div class="content">
+                        <input type="checkbox"  data-name="task-check">
+                        <p>Carotteeeeeeeee</p>
+                        <span class="icon-trash"><i class="fas fa-trash"></i></span>
+                    </div>
+                    <div class="input">
+                        <div class="price">
+                            <input type="number" data-name="price">
+                            <i class="fas fa-euro-sign"></i>
+                        </div>
+                        <div class="quantity">
+                            <input type="number" data-name="quantity">
+                            <span>Qté</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="todo">
+                    <div class="content">
+                        <input type="checkbox"  data-name="task-check">
+                        <p>Carotteeeeeeeee</p>
+                        <span class="icon-trash"><i class="fas fa-trash"></i></span>
+                    </div>
+                    <div class="input">
+                        <div class="price">
+                            <input type="number" data-name="price">
+                            <i class="fas fa-euro-sign"></i>
+                        </div>
+                        <div class="quantity">
+                            <input type="number" data-name="quantity">
+                            <span>Qté</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="todo">
+                    <div class="content">
+                        <input type="checkbox"  data-name="task-check">
+                        <p>Carotteeeeeeeee</p>
+                        <span class="icon-trash"><i class="fas fa-trash"></i></span>
+                    </div>
+                    <div class="input">
+                        <div class="price">
+                            <input type="number" data-name="price">
+                            <i class="fas fa-euro-sign"></i>
+                        </div>
+                        <div class="quantity">
+                            <input type="number" data-name="quantity">
+                            <span>Qté</span>
+                        </div>
+                    </div>
+                </div> -->
