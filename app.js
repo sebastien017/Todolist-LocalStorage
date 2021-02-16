@@ -9,8 +9,6 @@ const app = {
     init: () => {
         console.log('init lancée');
         app.populateList(app.Tasks, app.container);
-        app.sum();
-
         const form = document.querySelector('#addTodo');
         form.addEventListener('submit', app.addTodo);
         
@@ -18,42 +16,22 @@ const app = {
         app.container.addEventListener('input', app.setPrice);
         app.container.addEventListener('input', app.setQuantity);
         app.container.addEventListener('click', app.handleDelete);
-
+        app.sum();
     },
-
-    handleDelete: e => {
-        if(!e.target.matches('i.fa-trash')) return;
-        
-        app.Tasks = app.Tasks.filter((task) => task.id !== parseInt(e.target.dataset.key)
-            );
-            localStorage.setItem('listTasks', JSON.stringify(app.Tasks));
-            console.log(app.Tasks);
-            app.sum();
-            app.populateList(app.Tasks, app.container);
-    },
-
+    
+    
     setPrice: e => {
         if(e.target.dataset.name !== 'price' || !parseInt(e.target.value)) return;
-        if(e.target.value == ''){
-            e.target.value = 0;
-        }
-        let el = e.target;
-        let index = el.dataset.index;
-        let newPrice = el.value;
-        app.Tasks[index].price = newPrice;
+        let newPrice = e.target.value;
+        app.Tasks[e.target.dataset.index].price = newPrice;
         localStorage.setItem('listTasks', JSON.stringify(app.Tasks));
         app.sum();
     },
     
     setQuantity: e => {
         if(e.target.dataset.name !== 'quantity' || !parseInt(e.target.value)) return;
-        if(e.target.value == ''){
-            e.target.value = 0;
-        }
-        let el = e.target;
-        let index = el.dataset.index;
-        let newQuantity = el.value;
-        app.Tasks[index].quantity = newQuantity;
+        let newQuantity = e.target.value;
+        app.Tasks[e.target.dataset.index].quantity = newQuantity;
         localStorage.setItem('listTasks', JSON.stringify(app.Tasks));
         app.sum();
     },
@@ -65,14 +43,13 @@ const app = {
     sum: () => {
         app.total().length !== 0 ? 
             app.footer.textContent = [...app.total()].reduce((acc, cur) => acc + cur)
-        : app.footer.textContent = 0;
+            : app.footer.textContent = 0;
     },
     
 
     setStatus: e => {
         if(!e.target.matches('input[type=checkbox]')) return;
         let el = e.target;
-        console.log(el);
         let index = el.dataset.index;
         app.Tasks[index].status = !app.Tasks[index].status;
         localStorage.setItem('listTasks', JSON.stringify(app.Tasks));
@@ -94,10 +71,9 @@ const app = {
             }
             app.Tasks.push(newTask);
             localStorage.setItem('listTasks', JSON.stringify(app.Tasks));
-            app.sum;
+            app.sum();
             app.populateList(app.Tasks, app.container);
             e.target.children[0].value = '';
-            console.log('Ajout');
         }; 
     },
 
@@ -107,11 +83,11 @@ const app = {
     },
 
     populateList: (array = [], parentElement) => {
-       
+        
         parentElement.innerHTML = array.map((todo, i) => {
             let className = todo.status ? 'todo active' : 'todo';
             return (   
-            `<div class="${className}" id="${todo.id}">
+                `<div class="${className}" id="${todo.id}">
                 <div class="content">
                     <input type="checkbox" ${todo.status ? 'checked' : ''} data-index="${todo.id}">
                     <p>${todo.label}</p>
@@ -120,16 +96,29 @@ const app = {
                 <div class="input">
                     <div class="price">
                         <input type="number" data-name="price" data-index="${todo.id}" value="${todo.price}">
-                        <i class="fas fa-euro-sign"></i>
+                        <span>€</span>
                     </div>
                     <div class="quantity">
-                        <input type="number" data-name="quantity" data-index="${todo.id}" value="${todo.quantity}">
+                    <input type="number" data-name="quantity" data-index="${todo.id}" value="${todo.quantity}">
                         <span>Qté</span>
                     </div>
-                </div>
+                    </div>
             </div>`
             );
         }).join('');
-    }
+    },
+
+    handleDelete: e => {
+        if(!e.target.matches('i.fa-trash')) return;
+        for(let i = 0; i < app.Tasks.length; i++){
+            if(i === parseInt(e.target.dataset.key)){
+                app.Tasks.splice(i, 1);
+            }
+            app.Tasks[i].id = i;
+        }
+        localStorage.setItem('listTasks', JSON.stringify(app.Tasks));
+        app.populateList(app.Tasks, app.container);
+        app.sum();
+    },
 }
 window.addEventListener('DOMContentLoaded', app.init);

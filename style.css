@@ -3,6 +3,9 @@
     padding: 0;
     box-sizing: border-box;
 }
+*{
+    font-family: 'Dancing Script', cursive, sans-serif;
+}
 body{
     margin: 0 auto;
     width: 100vw;
@@ -109,7 +112,7 @@ span.icon-trash {
     margin: .5em 0;
 }
 .content p {
-    font-size: 1.5em;
+    font-size: 1.8em;
     max-width: 200px;
     overflow: hidden;
 }
@@ -120,9 +123,17 @@ span.icon-trash {
 .todo input[type=number]{
     font-size: 1.2em;
     max-width: 50px;
-    margin: 0 .5em;
+    padding: 2px 5px;
 }
 
+.todo .quantity input {
+    margin-left:20px;
+
+}
+.todo span {
+    font-size: 1.2em;
+    font-weight: bold;
+}
 footer{
     width: 100%;
     display: flex;
@@ -145,7 +156,7 @@ footer p, footer .fa-euro-sign{
     font-weight: bolder;
 }
 footer .fa-euro-sign{
-    color:gold;
+    color:goldenrod;
     margin-left: 10px;
 }
 
