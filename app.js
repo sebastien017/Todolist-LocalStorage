@@ -82,15 +82,23 @@ const app = {
         : 0;
     },
 
+    removeTags: (string, array) => {
+        return array ? string.split("<").filter(function(val){ return f(array, val); }).map(function(val){ return f(array, val); }).join("") : string.split("<").map(function(d){ return d.split(">").pop(); }).join("");
+        function f(array, value){
+          return array.map(function(d){ return value.includes(d + ">"); }).indexOf(true) != -1 ? "<" + value : value.split(">")[1];
+        }
+      },
+
     populateList: (array = [], parentElement) => {
         
-        parentElement.innerHTML = array.map((todo, i) => {
+        parentElement.innerHTML = array.map((todo) => {
             let className = todo.status ? 'todo active' : 'todo';
+            let value = app.removeTags(todo.label);
             return (   
                 `<div class="${className}" id="${todo.id}">
                 <div class="content">
                     <input type="checkbox" ${todo.status ? 'checked' : ''} data-index="${todo.id}">
-                    <p>${todo.label}</p>
+                    <p>${value}</p>
                     <button class="icon-trash"><i data-key="${todo.id}" class="fas fa-trash"></i></button>
                 </div>
                 <div class="input">
@@ -107,6 +115,7 @@ const app = {
             );
         }).join('');
     },
+
 
     handleDelete: e => {
         if(!e.target.matches('i.fa-trash')) return;
