@@ -111,10 +111,10 @@ const app = {
     handleDelete: e => {
         if(!e.target.matches('i.fa-trash')) return;
         for(let i = 0; i < app.Tasks.length; i++){
-            if(i === parseInt(e.target.dataset.key)){
+            if(app.Tasks[i].id === parseInt(e.target.dataset.key)){
                 app.Tasks.splice(i, 1);
             }
-            app.Tasks[i].id = i;
+            
         }
         localStorage.setItem('listTasks', JSON.stringify(app.Tasks));
         app.populateList(app.Tasks, app.container);
