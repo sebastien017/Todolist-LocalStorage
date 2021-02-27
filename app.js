@@ -23,7 +23,11 @@ const app = {
     setPrice: e => {
         if(e.target.dataset.name !== 'price' || !parseInt(e.target.value)) return;
         let newPrice = e.target.value;
-        app.Tasks[e.target.dataset.index].price = newPrice;
+        app.Tasks.find(task => {
+            if(task.id == e.target.dataset.index){
+                task.price = newPrice;
+            }
+        });
         localStorage.setItem('listTasks', JSON.stringify(app.Tasks));
         app.sum();
     },
@@ -31,7 +35,11 @@ const app = {
     setQuantity: e => {
         if(e.target.dataset.name !== 'quantity' || !parseInt(e.target.value)) return;
         let newQuantity = e.target.value;
-        app.Tasks[e.target.dataset.index].quantity = newQuantity;
+        app.Tasks.find(task => {
+            if(task.id == e.target.dataset.index){
+                task.quantity = newQuantity;
+            }
+        });
         localStorage.setItem('listTasks', JSON.stringify(app.Tasks));
         app.sum();
     },
@@ -49,21 +57,35 @@ const app = {
 
     setStatus: e => {
         if(!e.target.matches('input[type=checkbox]')) return;
-        let el = e.target;
-        let index = el.dataset.index;
-        app.Tasks[index].status = !app.Tasks[index].status;
+        app.Tasks.find(task => {
+            if(task.id == e.target.dataset.index){
+                task.status = !task.status;
+            }
+        });
         localStorage.setItem('listTasks', JSON.stringify(app.Tasks));
         app.populateList(app.Tasks, app.container);
     },
 
+    getId: () => {
+        let arrayId = [];
+        if(app.Tasks.length > 0){
+            for (let i = 0; i < app.Tasks.length; i++) {
+                arrayId.push(app.Tasks[i].id);
+            }
+            return Math.max(...arrayId);
+        } else {
+            return 0;
+        }
+    },
+
     addTodo: (e) => {
         e.preventDefault();
-        let id = app.getId(); 
+        let id = app.getId();
         const label = document.querySelector('#task').value.toString().trim();
         if(label != ''){
             
             let newTask = {
-                id: id++,
+                id: ++id,
                 label,
                 price: 0,
                 quantity: 1,
@@ -77,10 +99,6 @@ const app = {
         }; 
     },
 
-    getId: () => {
-        return JSON.parse(localStorage.getItem('listTasks')) != null ? JSON.parse(localStorage.getItem('listTasks')).length
-        : 0;
-    },
 
     removeTags: (string, array) => {
         return array ? string.split("<").filter(function(val){ return f(array, val); }).map(function(val){ return f(array, val); }).join("") : string.split("<").map(function(d){ return d.split(">").pop(); }).join("");
@@ -119,12 +137,13 @@ const app = {
 
     handleDelete: e => {
         if(!e.target.matches('i.fa-trash')) return;
-        for(let i = 0; i < app.Tasks.length; i++){
-            if(app.Tasks[i].id === parseInt(e.target.dataset.key)){
-                app.Tasks.splice(i, 1);
+        
+        for (let i = 0; i < app.Tasks.length; i++) {
+            if (app.Tasks[i].id === parseInt(e.target.dataset.key)) {
+              app.Tasks.splice(i, 1);
             }
-            
-        }
+          }
+
         localStorage.setItem('listTasks', JSON.stringify(app.Tasks));
         app.populateList(app.Tasks, app.container);
         app.sum();
