@@ -1,7 +1,7 @@
 const static_cache_name = "cache-todolist-v1";
-const files = ["/", "/Todolist-LocalStorage/index.html"];
+const files = ["/", "/index.html"];
 
-self.addEventListener('install', e => {
+this.addEventListener('install', e => {
     e.waitUntil(
         caches.open(static_cache_name).then(cache => {
             cache.addAll(files);
@@ -9,7 +9,7 @@ self.addEventListener('install', e => {
     )
 });
 
-self.addEventListener('fetch', e => {
+this.addEventListener('fetch', e => {
     e.respondWith(
         caches.match(e.request).then(response => {
             if(response) {
@@ -36,7 +36,7 @@ self.addEventListener('fetch', e => {
     );
 });
 
-self.addEventListener('activate', e => {
+this.addEventListener('activate', e => {
     e.waitUntil(
         caches.keys().then(keys => {
             return Promise.add(

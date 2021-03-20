@@ -1,7 +1,7 @@
 {
     "name": "Of Course",
     "short_name": "OC",
-    "start_url":"https://sebastien017.github.io/Todolist-LocalStorage/",
+    "start_url":"/index.html",
     "display": "standalone",
     "theme_color": "white",
     "background_color": "white",
