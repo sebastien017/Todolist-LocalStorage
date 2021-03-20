@@ -1,7 +1,7 @@
 {
     "name": "Of Course",
     "short_name": "OC",
-    "start_url":"index.html",
+    "start_url":"Todolist-LocalStorage/index.html",
     "display": "standalone",
     "theme_color": "white",
     "background_color": "white",
