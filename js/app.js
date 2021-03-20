@@ -117,7 +117,7 @@ const app = {
                 <div class="content">
                     <input type="checkbox" ${todo.status ? 'checked' : ''} data-index="${todo.id}">
                     <p>${value}</p>
-                    <button class="icon-trash"><img src="${`../assets/icons/icon-poubelle.png`}" data-key="${todo.id} class="img-trash"></button>
+                    <button class="icon-trash"><img src="${`assets/icons/icon-poubelle.png`}" data-key="${todo.id} class="img-trash"></button>
                 </div>
                 <div class="input">
                     <div class="price">
