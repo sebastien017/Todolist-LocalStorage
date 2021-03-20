@@ -1,5 +1,5 @@
 const static_cache_name = "cache-todolist-v1";
-const files = ["/", "/index.html"];
+const files = ["/", "/Todolist-LocalStorage/index.html"];
 
 self.addEventListener('install', e => {
     e.waitUntil(
