@@ -117,7 +117,7 @@ const app = {
                 <div class="content">
                     <input type="checkbox" ${todo.status ? 'checked' : ''} data-index="${todo.id}">
                     <p>${value}</p>
-                    <button class="icon-trash"><i data-key="${todo.id}" class="fas fa-trash"></i></button>
+                    <button class="icon-trash"><img src="${`../assets/icons/icon-poubelle.png`}" data-key="${todo.id} class="img-trash"></button>
                 </div>
                 <div class="input">
                     <div class="price">
@@ -136,7 +136,7 @@ const app = {
 
 
     handleDelete: e => {
-        if(!e.target.matches('i.fa-trash')) return;
+        if(!e.target.matches('button.icon-trash img')) return;
         
         for (let i = 0; i < app.Tasks.length; i++) {
             if (app.Tasks[i].id === parseInt(e.target.dataset.key)) {

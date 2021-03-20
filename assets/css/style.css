@@ -1,10 +1,15 @@
+@font-face{
+    font-family: "font-1";
+    src: url(../fonts/DancingScript-Regular.ttf);
+}
+
 *, ::before, ::after {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 *{
-    font-family: 'Dancing Script', cursive, sans-serif;
+    font-family: "font-1", cursive, sans-serif;
 }
 body{
     margin: 0 auto;
@@ -33,6 +38,7 @@ header {
     padding: 1em;
     top:0;
     left: 0;
+    border-bottom: 1px solid lightslategray;
     -webkit-box-shadow:inset 0px 0px 20px -12px #000000;
     -moz-box-shadow:inset 0px 0px 20px -12px #000000;
     box-shadow:inset 0px 0px 20px -12px #000000;
@@ -61,6 +67,11 @@ button {
     border: none;
     outline: none;
     background-color: white;
+}
+
+header button img {
+    width: 1.2em;
+    margin-top: 10px;
 }
 
 #container-body{
@@ -121,6 +132,10 @@ span.icon-trash {
     max-width: 200px;
     overflow: hidden;
 }
+
+.todo .content button.icon-trash img.img-trash {
+    width: 20px;
+}
 .todo input{
     border:1px solid lightslategrey;
 }
@@ -160,9 +175,8 @@ footer p, footer .fa-euro-sign{
     font-size: 2em;
     font-weight: bolder;
 }
-footer .fa-euro-sign{
-    color:goldenrod;
-    margin-left: 10px;
+footer p{
+    overflow-x: hidden;
 }
 
 
