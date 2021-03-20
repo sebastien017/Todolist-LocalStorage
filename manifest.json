@@ -48,12 +48,5 @@
             "sizes": "512x512",
             "type": "image/png"
         }
-    ],
-    "prefer_related_application": true,
-    "related_application": [
-        {
-            "platform": "play",
-            "id": "com.google.samples.apps.iosched"
-        }
     ]
 }
