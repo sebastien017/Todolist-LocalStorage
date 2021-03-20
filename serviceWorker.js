@@ -4,7 +4,7 @@ const files = ["/", "/index.html"];
 this.addEventListener('install', e => {
     e.waitUntil(
         caches.open(static_cache_name).then(cache => {
-            cache.addAll(files);
+            cache.addAll([files]);
         })
     )
 });

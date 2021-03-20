@@ -1,7 +1,7 @@
 {
     "name": "Of Course",
     "short_name": "OC",
-    "start_url":"/",
+    "start_url":"https://sebastien017.github.io",
     "display": "standalone",
     "theme_color": "white",
     "background_color": "white",
