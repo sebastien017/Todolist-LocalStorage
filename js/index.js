@@ -1,6 +1,4 @@
 const app = {
-    defaultPrice: 0,
-    defaultQuantity: 1,
     container: document.querySelector('#container-body .todos'),
     todo: document.querySelector('#container-body .todos .todo'),
     footer: document.querySelector('#container footer p'),
@@ -16,12 +14,11 @@ const app = {
         app.container.addEventListener('input', app.setPrice);
         app.container.addEventListener('input', app.setQuantity);
         app.container.addEventListener('click', app.handleDelete);
-        app.sum();
     },
     
     
     setPrice: e => {
-        if(e.target.dataset.name !== 'price' || !parseInt(e.target.value)) return;
+        if(e.target.dataset.name !== 'price' || !parseFloat(e.target.value)) return;
         let newPrice = e.target.value;
         app.Tasks.find(task => {
             if(task.id == e.target.dataset.index){
@@ -33,7 +30,7 @@ const app = {
     },
     
     setQuantity: e => {
-        if(e.target.dataset.name !== 'quantity' || !parseInt(e.target.value)) return;
+        if(e.target.dataset.name !== 'quantity' || !parseFloat(e.target.value)) return;
         let newQuantity = e.target.value;
         app.Tasks.find(task => {
             if(task.id == e.target.dataset.index){
@@ -41,17 +38,18 @@ const app = {
             }
         });
         localStorage.setItem('listTasks', JSON.stringify(app.Tasks));
-        app.sum();
+        app.sum(); 
     },
     
-    total: () => {
-        return app.Tasks.map((task) => task.price * task.quantity); 
-    },
     
     sum: () => {
-        app.total().length !== 0 ? 
-            app.footer.textContent = [...app.total()].reduce((acc, cur) => acc + cur)
-            : app.footer.textContent = 0;
+        let totalArray = app.Tasks.map((task) => task.price * task.quantity);
+        if (totalArray.length > 0) {
+            let total = totalArray.reduce((acc, cur) => acc + cur);
+            app.footer.textContent = Math.round(total * 100) / 100;
+        }else {
+            app.footer.textContent = 0;
+        }
     },
     
 
@@ -63,6 +61,7 @@ const app = {
             }
         });
         localStorage.setItem('listTasks', JSON.stringify(app.Tasks));
+        app.sum();
         app.populateList(app.Tasks, app.container);
     },
 
@@ -93,8 +92,8 @@ const app = {
             }
             app.Tasks.push(newTask);
             localStorage.setItem('listTasks', JSON.stringify(app.Tasks));
-            app.sum();
             app.populateList(app.Tasks, app.container);
+            app.sum();
             e.target.children[0].value = '';
         }; 
     },
@@ -117,7 +116,7 @@ const app = {
                 <div class="content">
                     <input type="checkbox" ${todo.status ? 'checked' : ''} data-index="${todo.id}">
                     <p>${value}</p>
-                    <button class="icon-trash"><img src="${`assets/icons/icon-poubelle.png`}" data-key="${todo.id} class="img-trash"></button>
+                    <button class="icon-trash"><img src="${`assets/icons/icon-poubelle.png`}" data-key="${todo.id}" class="img-trash"></button>
                 </div>
                 <div class="input">
                     <div class="price">
@@ -134,7 +133,6 @@ const app = {
         }).join('');
     },
 
-
     handleDelete: e => {
         if(!e.target.matches('button.icon-trash img')) return;
         
@@ -145,8 +143,8 @@ const app = {
           }
 
         localStorage.setItem('listTasks', JSON.stringify(app.Tasks));
-        app.populateList(app.Tasks, app.container);
         app.sum();
+        app.populateList(app.Tasks, app.container);
     },
 }
 window.addEventListener('DOMContentLoaded', app.init);
